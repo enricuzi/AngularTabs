@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="js/angular.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body ng-app="App">
+
+<!--
+    ***********************************************
+        Tab with controller and inner templates
+    ***********************************************
+-->
+<section class="one">
+
+    <hr><h1>Example 2</h1>
+
+    <!-- Set the controller to the menu -->
+    <ul ng-controller="TabCtrlOne">
+
+        <!-- For each item in the model set css 'active' if tab.url equals the selected one -->
+        <!-- On click dynamically add or remove the class name -->
+        <li ng-repeat="tab in tabs"
+            ng-class="{active:isActive(tab.url)}"
+            ng-click="onClick(tab)">
+
+            <!-- Show 'title' property of the current item -->
+            {{tab.title}}
+        </li>
+
+        <!-- Create the container for the selected template -->
+        <div ng-include="view"></div>
+    </ul>
+
+    <!-- Define the templates to use -->
+    <script type="text/ng-template" id="templateOne">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </script>
+
+    <script type="text/ng-template" id="templateTwo">
+        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    </script>
+
+    <script type="text/ng-template" id="templateThree">
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+    </script>
+</section>
+
+<!--
+    **********************************************
+        Tab with no controller and inner views
+    **********************************************
+-->
+<section class="two">
+
+    <hr><h1>Example 2</h1>
+
+    <!-- Init a new $scope variable 'tab' -->
+    <ul ng-init="tab = 2">
+
+        <!-- For each item change on click 'tab' value -->
+        <li ng-class="{active:tab===1}" ng-click="tab = 1">Lorem ipsum</li>
+        <li ng-class="{active:tab===2}" ng-click="tab = 2">Ut enim</li>
+        <li ng-class="{active:tab===3}" ng-click="tab = 3">Duis aute</li>
+
+        <!-- Listen of for 'tab' value changes -->
+        <div>
+            <p ng-show="tab === 1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+            <p ng-show="tab === 2">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <p ng-show="tab === 3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+    </ul>
+</section>
+
+<!--
+    ********************************************
+        Tab with controller and inner views
+    ********************************************
+-->
+<section class="three">
+
+    <hr><h1>Example 3</h1>
+
+    <!-- Set a nice alias controller for the current tab -->
+    <ul ng-controller="TabCtrlThree as tab">
+
+        <!-- For each tab call a function on click and listen for change values to set class name active -->
+        <li ng-class="{active:tab.isSelected(1)}" ng-click="tab.selectTab(1)">Lorem ipsum</li>
+        <li ng-class="{active:tab.isSelected(2)}" ng-click="tab.selectTab(2)">Ut enim</li>
+        <li ng-class="{active:tab.isSelected(3)}" ng-click="tab.selectTab(3)">Duis aute</li>
+
+        <!-- Show selected tab -->
+        <div>
+            <p ng-show="tab.isSelected(1)">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p ng-show="tab.isSelected(2)">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p ng-show="tab.isSelected(3)">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+    </ul>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+section {
+    clear: both;
+}
+section p {
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+    margin: 20px;
+}
+section ul {
+    float: left;
+    border-radius: 5px;
+    border: solid 1px silver;
+    padding: 7px 11px;
+    background-color: rgb(250,250,250);
+}
+section li {
+    float: left;
+    background-color: lightgrey;
+    padding: 5px 19px;
+    margin: 5px 2px 5px 0px;
+    color: white;
+    list-style: none;
+    font-size: 21px;
+    font-style: italic;
+    text-shadow: 1px 0px 3px black;
+    cursor: pointer;
+}
+section li:hover {
+    background-color: lightseagreen;
+}
+section .active {
+    background-color: dodgerblue;
+}
+section ul div {
+    clear: both;
+}
